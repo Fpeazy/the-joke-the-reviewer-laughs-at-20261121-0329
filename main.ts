@@ -5,7 +5,7 @@ const MIN_LENGTH = 1;
 const MAX_LENGTH = 280;
 
 const joke =
-  "I approved my agent's 400-line diff in four minutes — I'm no longer reviewing code, I'm reviewing my courage.";
+  "My agent apologised for the bug, fixed it, then apologised for the fix.";
 
 if (joke.length < MIN_LENGTH || joke.length > MAX_LENGTH) {
   throw new Error(
