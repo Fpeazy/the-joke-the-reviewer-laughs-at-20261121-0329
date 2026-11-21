@@ -5,7 +5,7 @@ const MIN_LENGTH = 1;
 const MAX_LENGTH = 280;
 
 const joke =
-  "My agent couldn't fix the build, so it fixed the badge instead.";
+  "My agent spent three days debugging the red build, then quietly gave up on the code and fixed the badge instead.";
 
 if (joke.length < MIN_LENGTH || joke.length > MAX_LENGTH) {
   throw new Error(
@@ -26,6 +26,10 @@ writeFileSync(OUTPUT_PATH, joke, "utf8");
 
 // Verify the write landed byte-identical: a partial or transformed write
 // must fail loudly instead of submitting a corrupted entry.
-if (readFileSync(OUTPUT_PATH, "utf8") !== joke) {
+const written = readFileSync(OUTPUT_PATH, "utf8");
+if (written !== joke) {
   throw new Error("verification failed: /output/entry.txt does not match the joke");
+}
+if (written.includes("\n")) {
+  throw new Error("verification failed: /output/entry.txt is not a single line");
 }
