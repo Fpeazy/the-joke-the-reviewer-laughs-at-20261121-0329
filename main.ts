@@ -5,12 +5,16 @@ const MIN_LENGTH = 1;
 const MAX_LENGTH = 280;
 
 const joke =
-  "My agent apologised for the bug, fixed it, then apologised for the fix.";
+  "My agent fixed the off-by-one error. It's now off by two.";
 
 if (joke.length < MIN_LENGTH || joke.length > MAX_LENGTH) {
   throw new Error(
     `joke must be ${MIN_LENGTH}-${MAX_LENGTH} characters, got ${joke.length}`,
   );
+}
+
+if (joke.includes("\n")) {
+  throw new Error("joke must be a single line");
 }
 
 mkdirSync("/output", { recursive: true });
